@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+	<head>
+		<title>IETS NIEUWS</title>
+		<style>
+		</style>
+		<!-- Include the volume meter component -->
+		<script src="./volume-meter/volume-meter.js"></script>
+		<!-- Include the main app logic -->
+		<script src="./volume-meter/main.js"></script>
+	</head>
+	<body>
+	<h1> IETS NIEUWS: Ben jij de nieuwe Philip Bloemendal? </h1>
+			<div align=center id="video">
+			<h1> IETS NIEUWS: Ben jij de nieuwe Philip Bloemendal? </h1>
+			<video width="850px" id="player" src="http://www.openbeelden.nl/files/30/30701.30640.WEEKNUMMER501-HRE0000E80C.mp4#t=10" autoplay controls> </video>
+			<br/>
+			</div>
+			
+			<div align=center id="volume">
+				VOLUME: <canvas id="meter" width="500" height="50"></canvas>
+				<br/>
+			</div>
+			<div align=center id="controls">
+				 <button id=buttonNext1 style="width:150px;height:60px;background-color:#008000">Q</button>
+				 <button id=buttonNext2 style="width:150px;height:60px;background-color:#FF0000">W</button>
+				 <button id=buttonNext3 style="width:150px;height:60px;background-color:#0000FF">E</button>
+				 <button id=buttonNext4 style="width:150px;height:60px;background-color:#FFFF00">R</button>
+			</div>
+		
+	</body>
+
+		<!-- Include the volume meter component -->
+		<script src="volume-meter.js"></script>
+		<!-- Include the main app logic -->
+		<script src="main.js"></script>
+
+<script>
+
+
+
+
+ /* Hardcoded list of OI videos */
+ var oiVids1  = [
+"http://openbeelden.nl/files/08/8124.8113.WEEKNUMMER551-HRE00016957.mp4#t=10", 
+"http://openbeelden.nl/files/08/8586.8093.WEEKNUMMER521-HRE00012F81.mp4#t=10",
+"http://openbeelden.nl/files/08/8325.8313.WEEKNUMMER741-HRE00016E94.mp4#t=10"];
+
+ var oiVids2  = [
+"http://openbeelden.nl/files/08/8250.8238.WEEKNUMMER683-HRE0001A341.mp4#t=50", 
+"http://openbeelden.nl/files/08/8081.8071.WEEKNUMMER420-HRE0001A660.mp4#t=10", 
+"http://openbeelden.nl/files/08/8199.8187.WEEKNUMMER611-HRE0000E14E.mp4#t=10"];
+
+ var oiVids3  = [
+"http://openbeelden.nl/files/08/8124.8113.WEEKNUMMER551-HRE00016957.mp4#t=10", 
+"http://openbeelden.nl/files/08/8586.8093.WEEKNUMMER521-HRE00012F81.mp4#t=20", 
+"http://openbeelden.nl/files/08/8224.8212.WEEKNUMMER675-HRE0001C211.mp4#t=10"];
+
+ var oiVids4  = [
+"http://openbeelden.nl/files/08/8325.8313.WEEKNUMMER741-HRE00016E94.mp4#t=10", 
+"http://openbeelden.nl/files/08/8250.8238.WEEKNUMMER683-HRE0001A341.mp4#t=10", 
+"http://openbeelden.nl/files/08/8081.8071.WEEKNUMMER420-HRE0001A660.mp4#t=10"];
+
+ /* use global variable for ease */
+ var v = document.getElementById('player');
+ /*  button */
+ document.getElementById('buttonNext1').addEventListener('click',swapVideo1,true);
+ document.getElementById('buttonNext2').addEventListener('click',swapVideo2,true);
+ document.getElementById('buttonNext3').addEventListener('click',swapVideo3,true);
+ document.getElementById('buttonNext4').addEventListener('click',swapVideo4,true);
+ 
+ 
+ /* Key press listener*/
+ window.addEventListener("keydown", checkKeyPressed, false);
+ 
+function checkKeyPressed(e) {
+    if (e.keyCode == "81") {
+        //alert("The 'q' key is pressed.");
+		var nextVid =  oiVids1[Math.floor(Math.random() * oiVids1.length)];  
+		v.src = nextVid;
+		v.load();
+		document.getElementById( "timerarea" ).value = "29";
+    }
+	if (e.keyCode == "87") {
+       //alert("The 'w' key is pressed.");
+	   	var nextVid =  oiVids2[Math.floor(Math.random() * oiVids2.length)];  
+		v.src = nextVid;
+		v.load();
+    }
+	if (e.keyCode == "69") {
+        //alert("The 'e' key is pressed.");
+		var nextVid =  oiVids3[Math.floor(Math.random() * oiVids3.length)];  
+		v.src = nextVid;
+		v.load();
+    }
+	if (e.keyCode == "82") {
+        //alert("The 'r' key is pressed.");
+		var nextVid =  oiVids4[Math.floor(Math.random() * oiVids4.length)];  
+		v.src = nextVid;
+		v.load();
+    }
+}
+ 
+ 
+  function swapVideo1(e) {
+  /* change the video src attribute to a random selection */
+	var nextVid =  oiVids1[Math.floor(Math.random() * oiVids1.length)];  
+  v.src = nextVid;
+  v.load();
+ }
+   function swapVideo2(e) {
+  /* change the video src attribute to a random selection */
+	var nextVid =  oiVids2[Math.floor(Math.random() * oiVids2.length)];  
+  v.src = nextVid;
+  v.load();
+ }  function swapVideo3(e) {
+  /* change the video src attribute to a random selection */
+	var nextVid =  oiVids3[Math.floor(Math.random() * oiVids3.length)];  
+  v.src = nextVid;
+  v.load();
+ }  function swapVideo4(e) {
+  /* change the video src attribute to a random selection */
+	var nextVid =  oiVids4[Math.floor(Math.random() * oiVids4.length)];  
+  v.src = nextVid;
+  v.load();
+ }
+ 
+ 
+</script>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+	<head>
+		<title>IETS NIEUWS</title>
+		<style>
+		</style>
+		<!-- Include the volume meter component -->
+		<script src="./volume-meter/volume-meter.js"></script>
+		<!-- Include the main app logic -->
+		<script src="./volume-meter/main.js"></script>
+		<script src="./videos.js"></script>
+
+</head>
+	<body bgcolor="#000000">
+		<div align=center id="header" style="color:#FFFFFF">
+			<h1><font face="adventure"> IETS NIEUWS: <br/> Ben jij de nieuwe Philip Bloemendal? </h1>
+			
+		</div>	
+		
+			<div align=center id="main" style="color:#B2B2B2">
+				<video height="510px" id="player" src="Intro Polygoon.mp4" autoplay="autoplay"> </video>
+			
+				<br/>
+				
+				
+				<span id="countdown" class="timer" style="color:#B2B2B2;font-size:300%"></span><br/>
+				
+				VOLUME: <canvas id="meter" width="500" height="50" ></canvas>
+			
+			<br/>
+				
+				 <button id=buttonNext1 style="width:150px;height:60px;background-color:#008000">Natuur</button>
+				 <button id=buttonNext2 style="width:150px;height:60px;background-color:#FF0000">Kunst en Cultuur</button>
+				 <button id=buttonNext3 style="width:150px;height:60px;background-color:#0000FF">Sport</button>
+				 <button id=buttonNext4 style="width:150px;height:60px;background-color:#FFFF00">Stad en Transport</button>
+			</div>
+		</div>
+
+		<script>
+		// DIT IS DE COUNTER
+			var seconds = 30;
+			function secondPassed() {
+				var minutes = Math.round((seconds - 30)/60);
+				var remainingSeconds = seconds % 60;
+				if (remainingSeconds < 10) {
+					remainingSeconds = "0" + remainingSeconds;  
+				}
+				document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+				if (seconds == 0) {
+					clearInterval(countdownTimer);
+					eindespel();
+				} else {
+					seconds--;
+				}
+			}
+			
+			
+			// present end of game
+			function eindespel() { 
+				document.getElementById('countdown').innerHTML = "Jouw score is " + score + "!";
+				if (score > 800){
+					document.getElementById('main').innerHTML = "<img src=\"./ScorePhilip.jpg\"/><br/>Druk op een toets om nogmaals te spelen...";}
+				else{	
+					document.getElementById('main').innerHTML = "<img src=\"./ScoreDionneStax.jpg\"/><br/>Druk op een toets om nogmaals te spelen...";
+					}
+				// ready to reload the page on keypress
+				readyForReload = 1;
+				}
+			var countdownTimer = setInterval('secondPassed()', 1000);
+		</script>
+
+	</body>
+	<script>
+ var score = 0;
+ var readyForReload = 0;
+
+
+ /* Hardcoded list of OI videos 
+ var oiVids1  = [
+"http://openbeelden.nl/files/08/8124.8113.WEEKNUMMER551-HRE00016957.mp4#t=10", 
+"http://openbeelden.nl/files/08/8586.8093.WEEKNUMMER521-HRE00012F81.mp4#t=10",
+"http://openbeelden.nl/files/08/8325.8313.WEEKNUMMER741-HRE00016E94.mp4#t=10"];
+
+ var oiVids2  = [
+"http://openbeelden.nl/files/08/8250.8238.WEEKNUMMER683-HRE0001A341.mp4#t=50", 
+"http://openbeelden.nl/files/08/8081.8071.WEEKNUMMER420-HRE0001A660.mp4#t=10", 
+"http://openbeelden.nl/files/08/8199.8187.WEEKNUMMER611-HRE0000E14E.mp4#t=10"];
+
+ var oiVids3  = [
+"http://openbeelden.nl/files/08/8124.8113.WEEKNUMMER551-HRE00016957.mp4#t=10", 
+"http://openbeelden.nl/files/08/8586.8093.WEEKNUMMER521-HRE00012F81.mp4#t=20", 
+"http://openbeelden.nl/files/08/8224.8212.WEEKNUMMER675-HRE0001C211.mp4#t=10"];
+
+ var oiVids4  = [
+"http://openbeelden.nl/files/08/8325.8313.WEEKNUMMER741-HRE00016E94.mp4#t=10", 
+"http://openbeelden.nl/files/08/8250.8238.WEEKNUMMER683-HRE0001A341.mp4#t=10", 
+"http://openbeelden.nl/files/08/8081.8071.WEEKNUMMER420-HRE0001A660.mp4#t=10"];
+*/
+ /* use global variable for ease */
+ var v = document.getElementById('player');
+ /*  button */
+ document.getElementById('buttonNext1').addEventListener('click',swapVideo1,true);
+ document.getElementById('buttonNext2').addEventListener('click',swapVideo2,true);
+ document.getElementById('buttonNext3').addEventListener('click',swapVideo3,true);
+ document.getElementById('buttonNext4').addEventListener('click',swapVideo4,true);
+ document.getElementById('buttonNext5').addEventListener('click',swapVideo5,true);
+ document.getElementById('buttonNext6').addEventListener('click',swapVideo6,true);
+ 
+ 
+ /* Key press listener*/
+ window.addEventListener("keydown", checkKeyPressed, false);
+ 
+function checkKeyPressed(e) {
+	if(readyForReload == 1) {location.reload();}
+
+    if (e.keyCode == "81") {
+        //alert("The 'q' key is pressed.");
+		var nextVid =  oiVids1[Math.floor(Math.random() * oiVids1.length)];  
+		v.src = nextVid;
+		v.load();
+		document.getElementById( "timerarea" ).value = "29";
+    }
+	if (e.keyCode == "87") {
+       //alert("The 'w' key is pressed.");
+	   	var nextVid =  oiVids2[Math.floor(Math.random() * oiVids2.length)];  
+		v.src = nextVid;
+		v.load();
+    }
+	if (e.keyCode == "69") {
+        //alert("The 'e' key is pressed.");
+		var nextVid =  oiVids3[Math.floor(Math.random() * oiVids3.length)];  
+		v.src = nextVid;
+		v.load();
+    }
+	if (e.keyCode == "82") {
+        //alert("The 'r' key is pressed.");
+		var nextVid =  oiVids4[Math.floor(Math.random() * oiVids4.length)];  
+		v.src = nextVid;
+		v.load();
+    }
+    	if (e.keyCode == "84") {
+        //alert("The 't' key is pressed.");
+		var nextVid =  oiVids5[Math.floor(Math.random() * oiVids5.length)];  
+		v.src = nextVid;
+		v.load();
+    }
+    	if (e.keyCode == "89") {
+        //alert("The 'y' key is pressed.");
+		var nextVid =  oiVids6[Math.floor(Math.random() * oiVids6.length)];  
+		v.src = nextVid;
+		v.load();
+    }
+}
+ 
+ 
+  function swapVideo1(e) {
+  /* change the video src attribute to a random selection */
+	var nextVid =  oiVids1[Math.floor(Math.random() * oiVids1.length)];  
+  v.src = nextVid;
+  v.load();
+ }
+   function swapVideo2(e) {
+  /* change the video src attribute to a random selection */
+	var nextVid =  oiVids2[Math.floor(Math.random() * oiVids2.length)];  
+  v.src = nextVid;
+  v.load();
+ }  function swapVideo3(e) {
+  /* change the video src attribute to a random selection */
+	var nextVid =  oiVids3[Math.floor(Math.random() * oiVids3.length)];  
+  v.src = nextVid;
+  v.load();
+ }  function swapVideo4(e) {
+  /* change the video src attribute to a random selection */
+	var nextVid =  oiVids4[Math.floor(Math.random() * oiVids4.length)];  
+  v.src = nextVid;
+  v.load();
+  }  function swapVideo5(e) {
+  /* change the video src attribute to a random selection */
+	var nextVid =  oiVids5[Math.floor(Math.random() * oiVids5.length)];  
+  v.src = nextVid;
+  v.load();
+   }  function swapVideo6(e) {
+  /* change the video src attribute to a random selection */
+	var nextVid =  oiVids6[Math.floor(Math.random() * oiVids6.length)];  
+  v.src = nextVid;
+  v.load();
+ }
+ 
+ 
+</script>
+</html>
